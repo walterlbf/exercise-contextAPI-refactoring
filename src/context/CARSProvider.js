@@ -10,6 +10,9 @@ export default class CARSProvider extends Component {
         red: false,
         blue: false,
         yellow: false,
+      },
+      signal: {
+        color: 'red',
       }
     }
   }
@@ -23,10 +26,19 @@ export default class CARSProvider extends Component {
     });
   };
 
+  changeSignal = (color) => {
+    this.setState({
+      signal: {
+        ...this.state.signal,
+        color: color,
+      }
+    })
+  }
+
   render() {
     const { children } = this.props;
     return (
-      <CARSContext.Provider value={{ ...this.state, moveCar: this.moveCar }} >
+      <CARSContext.Provider value={{ ...this.state, moveCar: this.moveCar, changeSignal: this.changeSignal }} >
         {children}
       </CARSContext.Provider >
     )

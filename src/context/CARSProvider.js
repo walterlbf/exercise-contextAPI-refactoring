@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import CARSContext from './CARSContext';
+import PropTypes from 'prop-types';
 
 export default class CARSProvider extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       cars: {
         red: false,
@@ -25,9 +26,13 @@ export default class CARSProvider extends Component {
   render() {
     const { children } = this.props;
     return (
-      <CARSProvider.Provider value={{ ...this.state, moveCar: this.moveCar }} >
+      <CARSContext.Provider value={{ ...this.state, moveCar: this.moveCar }} >
         {children}
-      </CARSProvider.Provider >
+      </CARSContext.Provider >
     )
   }
 }
+
+CARSProvider.propTypes = {
+  moveCar: PropTypes.func.isRequired,
+};
